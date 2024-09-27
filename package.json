@@ -1,0 +1,48 @@
+{
+  "name": "afirmashop-carts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "prod": "pm2 start dist/main/server.js -i max --watch",
+    "start": "node dist/main.js",
+    "dev": "ts-node-dev --watch -- src/main/server.ts",
+    "test": "jest --passWithNoTests --noStackTrace --runInBand --detectOpenHandles",
+    "test:unit": "npm test -- --passWithNoTests --watch -c jest-unit-config.ts",
+    "test:integration": "npm test -- --passWithNoTests --watch -c jest-integration-config.ts",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage",
+    "docker:up": "npm run build && docker-compose up",
+    "docker:down": "docker-compose down",
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@afirmashop/common-logic": "^1.6.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "joi": "^17.13.3",
+    "kafkajs": "^2.2.4",
+    "module-alias": "^2.2.3",
+    "mongoose": "^8.6.3",
+    "node-cron": "^3.0.3"
+  },
+  "_moduleAliases": {
+    "@src": "dist"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.5.5",
+    "jest": "^29.7.0",
+    "mockdate": "^3.0.5",
+    "mongodb-memory-server": "^10.0.1",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
